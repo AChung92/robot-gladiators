@@ -7,6 +7,9 @@ var enemyNames = ["Roborto", "Amy Android", "Robo Trumble"];
 var enemyHealth = 50;
 var enemyAttack = 12;
 
+console.log(playerName);
+console.log(playerHealth, playerAttack, playerMoney);
+console.log("You can put regular sentences in these.");
 
 // Game States
 // "WIN" - Player robot has defeated all enemy-robots
@@ -14,11 +17,14 @@ var enemyAttack = 12;
 //  * Defeat each enemy-robot
 // "LOSE" - Player robot's health is zero or less
 
-var fight = function(enemyName) {
-    window.alert("Welcome to Robot Gladiators!");
-    var promptFight = window.prompt('Would you like to FIGHT or SKIP this battle? Enter "FIGHT" or "SKIP" to choose.');
 
-    // if player chooses to fight, then fight
+var fight = function(enemyName) {
+    // repeat and execute as long as the enemy-robot is alive
+    while(enemyHealth > 0) {
+        // window.alert("Welcome to Robot Gladiators!");
+        var promptFight = window.prompt('Would you like to FIGHT or SKIP this battle? Enter "FIGHT" or "SKIP" to choose.');
+
+        // if player chooses to fight, then fight
     if (promptFight === "fight" || promptFight === "FIGHT") {
 
         //Subtract the value of `playerAttack` from the value of `enemyHealth` and use that result to update the value in the `enemyHealth` variable
@@ -67,9 +73,13 @@ var fight = function(enemyName) {
         // if player did not chose 1 or 2 in prompt
     } else {
     window.alert("You need to pick a valid option. Try again!");
-    }    
+    } 
+    
+    }
 };
 
-for(var i = 0; i < enemyNames.length; i++) {
-    fight(enemyNames[i]);
+for (var i = 0; i < enemyNames.length; i++) {
+    var pickedEnemyName = enemyNames[i];
+    enemyHealth= 50;
+    fight(pickedEnemyName);
 }
